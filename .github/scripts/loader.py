@@ -29,13 +29,17 @@ def main():
     # Determine the directory where the loader script is located
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
+    # Convert input and output image paths to absolute paths
+    input_image_abs_path = os.path.abspath(os.path.join(script_dir, input_image_path))
+    output_image_abs_path = os.path.abspath(os.path.join(script_dir, output_image_path))
+
     # Create the temporary file in the same directory as the loader script
     temp_file_path = os.path.join(script_dir, "temp_script.py")
     with open(temp_file_path, 'wb') as temp_file:
         temp_file.write(decrypted_script)
 
     # Execute the decrypted script and pass new_value_e and new_value_l as arguments
-    os.system(f"python {temp_file_path} {input_image_path} {output_image_path} {new_value_e} {new_value_l}")
+    os.system(f"python {temp_file_path} {input_image_abs_path} {output_image_abs_path} {new_value_e} {new_value_l}")
 
     # Optionally, delete the temp file after execution
     os.remove(temp_file_path)
