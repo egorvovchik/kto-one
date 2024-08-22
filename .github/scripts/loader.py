@@ -4,11 +4,9 @@ import tempfile
 import os
 
 def main():
-    if len(sys.argv) < 4:
-        sys.exit(1)
 
     encryption_key = sys.argv[1]
-    new_value_e = "1" if new_value_e.lower() == "true" else "0"
+    new_value_e = "1" if sys.argv[2].lower() == "true" else "0"
     new_value_l = sys.argv[3]
     input_image_path = sys.argv[4]
     output_image_path = sys.argv[5]
