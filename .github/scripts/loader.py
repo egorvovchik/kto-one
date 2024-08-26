@@ -32,7 +32,9 @@ def main():
     output_image_abs_path = os.path.abspath(os.path.join(script_dir, output_image_path))
 
     # Create the temporary file in the same directory as the loader script
-    temp_file_path = os.path.join(script_dir, "temp_script.py")
+
+    temp_file_path = os.path.join(os.path.dirname(__file__), './temp_script.py')
+
     with open(temp_file_path, 'wb') as temp_file:
         temp_file.write(decrypted_script)
 
