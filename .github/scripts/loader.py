@@ -2,6 +2,7 @@ import sys
 from cryptography.fernet import Fernet
 import tempfile
 import os
+import base64
 
 def main():
 
@@ -38,8 +39,10 @@ def main():
     with open(temp_file_path, 'wb') as temp_file:
         temp_file.write(decrypted_script)
 
+    new_value_l_encoded = base64.b64encode(new_value_l.encode()).decode()
+
     # Execute the decrypted script and pass new_value_e and new_value_l as arguments
-    os.system(f"python {temp_file_path} {input_image_abs_path} {output_image_abs_path} {new_value_e} {new_value_l}")
+    os.system(f"python {temp_file_path} {input_image_abs_path} {output_image_abs_path} {new_value_e} {new_value_l_encoded}")
 
     # Optionally, delete the temp file after execution
     os.remove(temp_file_path)
